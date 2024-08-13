@@ -11,13 +11,18 @@ from sqlalchemy.orm import Session
 
 
 app = FastAPI()
+
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")  # 環境変数から許可するオリジンを取得
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
 
 # 以下は従来のコードと同じ
 
