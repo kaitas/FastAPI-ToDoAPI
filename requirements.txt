@@ -1,1 +1,3 @@
-flask
+fastapi[all]
+alembic
+SQLAlchemy
