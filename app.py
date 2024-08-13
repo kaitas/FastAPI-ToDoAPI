@@ -1,4 +1,6 @@
+import os
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
 from schemas import PostTodo
@@ -9,6 +11,16 @@ from sqlalchemy.orm import Session
 
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000").split(",")  # 環境変数から許可するオリジンを取得
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# 以下は従来のコードと同じ
+
 
 def get_db():
     db = SessionLocal()

@@ -1,3 +1,3 @@
-fastapi[all]
-alembic
-SQLAlchemy
+fastapi
+uvicorn
+python-dotenv
